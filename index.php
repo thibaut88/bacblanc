@@ -34,6 +34,8 @@ $ROLE = $_SESSION['ROLE'];
 		while($row = mysqli_fetch_assoc($result)){
 			if($row['password']==$password&&$row['email']==$email)
 			{
+				session_destroy();
+				session_start();
 				$_SESSION['LOGGED'] = true;
 				$_SESSION['id_user'] = (int) $row['id_user'];
 				$_SESSION['name'] = (string)$row['name'];
