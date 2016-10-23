@@ -20,14 +20,30 @@ $(document).ready(function(){
 	
 	function filterCat(elem){
 	var $videos = $(".categorie");
-	$videos.hide(250);
+	$videos.each(function(){
+		$(this).hide(250);
+	});
+	
 	if(elem=='all'){
-	$videos.show(250);
-
-	}
+	$videos.each(function(){
+		$(this).show(250);
+	});	}
+	
 	var $element = $('.'+elem);
 	$element.show(250);
+	
 	}
+	
+	
+	
 	function filterDate(text){
-		alert(text);
+		
+	var $showsElements = $('.categorie');
+	$showsElements.each(function(){
+		alert($(this).attr('data-timestamp'));
+		$(this).show(250);
+	});		
+	
 	}
+	
+	

@@ -72,9 +72,50 @@ require 'menu.php';
 		
 	if(mysqli_num_rows($RES)>0){
 		while($row = mysqli_fetch_assoc($RES)){ ?>
+	<?php
+	$options = ['-',' ',':'];
+	$date=$row['date_ajout'];
+	$reverseTimestamp=str_replace($options,'',$date);
+	$limit=8;
+	$premier; $deuxieme;
+	for($i=0;$i<strlen($reverseTimestamp);$i++){
+		if($i<$limit){
+		$premier.=$reverseTimestamp[$i];
+		}else{
+		$deuxieme .=$reverseTimestamp[$i];
+		}
+	}
+	$deuxieme.=$premier;
+	$timestamp=$deuxieme;
 	
-	<div class="categorie categorie-<?=$row['videos_id_categorie']?> row">
+	$heure=$timestamp[0];
+	$heure.=$timestamp[1];
+	
+	$minute=$timestamp[2];
+	$minute.=$timestamp[3];
+	
+	$seconde=$timestamp[4];
+	$seconde.=$timestamp[5];
+	
+	$annee=$timestamp[6];
+	$annee.=$timestamp[7];
+	$annee.=$timestamp[8];
+	$annee.=$timestamp[9];
+
+	$mois=$timestamp[10];
+	$mois.=$timestamp[11];
+	
+	$jour=$timestamp[12];
+	$jour.=$timestamp[13];
+	
+	$timestamp= mktime( $heure, $minute, $seconde, $mois, $jour, $annee);
+
+
+	?>
+	
+	<div data-timestamp="<?=$timestamp?>"class="categorie categorie-<?=$row['videos_id_categorie']?> row">
 	<div class="col-md-6 col-md-offset-3">
+
 		<h2><?=$row['titre_video']?></h2>
 		
 		 <?=$row['url']?>
