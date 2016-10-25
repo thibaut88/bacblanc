@@ -4,12 +4,13 @@ require 'conf.php';
 var_dump($_SESSION);
 
 if(empty($_SESSION)){
+	//SI PAS DE SESSION 
+	//SI USER PAS CONNECTED
 $_SESSION['LOGGED'] = false;
 $_SESSION['ROLE'] = 0;
 
 $LOGGED = $_SESSION['LOGGED'];
 $ROLE = $_SESSION['ROLE'];
-
 }else{
 	//SI DEJA CONNECTED
 $LOGGED = $_SESSION['LOGGED'];
@@ -27,15 +28,16 @@ $ROLE = $_SESSION['ROLE'];
 	`email`,`users_id_role`,
 	`id_role`,`nom_role` 
 	FROM `users`
-	LEFT JOIN `roles` ON users.users_id_role = roles.id_role";
+	LEFT JOIN `roles` ON users.users_id_role = roles.id_role
+	WHERE password = '$password' AND email = '$email'
+	";
 	
 	$result = mysqli_query($conn, $usersAll);
 	
 	if(mysqli_num_rows($result)>0){
-		while($row = mysqli_fetch_assoc($result)){
+		$row=mysqli_fetch_assoc($result);
 			//SI PASS && EMAIL CORRESPONDENT
-			if($row['password']==$password&&$row['email']==$email)
-			{
+		
 				session_destroy();
 				session_start();
 				$_SESSION['LOGGED'] = true;
@@ -49,11 +51,11 @@ $ROLE = $_SESSION['ROLE'];
 				
 				$LOGGED = $_SESSION['LOGGED'];
 				$ROLE = $_SESSION['ROLE'];
-			}
-		}
+	
+	
 	}else{
-		if($_SESSION['ROLE'] === 0){
-					$erreur = "le mot de passe ou l'email ne correspondent pas";
+		if($_SESSION['ROLE'] == 0){
+			$erreur = "le mot de passe ou l'email ne correspondent pas";
 
 		}
 

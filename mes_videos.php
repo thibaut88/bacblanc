@@ -52,6 +52,7 @@ $ROLE = $_SESSION['ROLE'];
 }
 </style>
 </head>
+
 <body>
 
 <?php
@@ -144,13 +145,15 @@ else{
 <script type='text/javascript'>
 
 $(document).ready(function(){
+	
 	var $option="";
 
 	$('iframe').on({
+		
 		'mouseenter':function(){
 		var $elem= $(this).parent();
 		var $hover= $elem.find('div.hover');
-		console.log($elem);
+
 		$elem.css('display','block');
 		$elem.css('position','relative');
 		$elem.css('top','0px');
@@ -184,25 +187,16 @@ $(document).ready(function(){
 		$hover.css('height','0%');	
 	
 	}
-	});
-	
-		// $option.on('mouseover',function(){
-			// alert("ok");
-		// });
-		
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 });
+		
+});
+
+function delete(){}
+
+function modifier(){}
+
+
+
 
 </script>
 </body>
