@@ -1,0 +1,26 @@
+-faire des logs
+-faire un formulaire d'inscription
+-faire une barre de nav
+-faire une page de connexion
+-faire une page admin
+-afficher une liste de videos
+-faire une pagination
+-boutton connexion/deconnexion en fonction de l'etat
+-afficher un message d'alerte qui dit si on est co ou pas
+-config
+-base de donnnées
+-maquettes
+-creer des categorie (formulaire / table BDD)
+-trier par date
+-trier par categorie
+-trier par titre
+-boutton deconnnexion
+-poster des com si on est co en tant que membvre/admin
+-modifier creer ajouter supprimer video/commentaire/categorie (dans une page privée admin)
+-mettre sur github (faire des commits)
+-afficher/cacher les infos complementaires des videos
+-formulaire d'ajout d'admin par un autre admin
+-modal box videos
+
+
+-FAIRE EN SORTE QU4ON MOT DE PASSE PROTEGE UNE VIDEO

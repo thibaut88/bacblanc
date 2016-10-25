@@ -1,0 +1,15 @@
+
+.hide{
+	display:none;
+}
+.btn{
+	display:block;
+	margin:5px;
+	transition:width height 1s;
+	margin:auto;
+}
+iframe{
+	border:2px solid lightgrey;
+	box-shadow:2px 2px 6px rgba(255,255,255,0.5);
+	margin-bottom:5px;
+}
