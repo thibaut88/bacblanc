@@ -40,6 +40,7 @@ $ROLE = $_SESSION['ROLE'];
 		
 				session_destroy();
 				session_start();
+				
 				$_SESSION['LOGGED'] = true;
 				$_SESSION['id_user'] = (int) $row['id_user'];
 				$_SESSION['name'] = (string)$row['name'];

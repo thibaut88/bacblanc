@@ -1,6 +1,6 @@
-<nav class="navbar navbar-default">
-  <div class="container-fluid">
-    <div class="navbar-header">
+<nav class="navbar navbar-inverse">
+  <div class="container-fluid ">
+    <div class="navbar-header ">
       <a class="navbar-brand" href="index.php">BAC BLANC</a>
     </div>
     <ul class="nav navbar-nav">
@@ -9,7 +9,6 @@
 	  if(ROLE==2){
 		  ?>
 	<li><a href="../mes_videos.php">Mes vidéos</a></li> 	
-	<li><a href="../private.php">private.php</a></li> 	
 	<?php
 	} 
 	?>

@@ -30,6 +30,7 @@ $ROLE = $_SESSION['ROLE'];
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tether/1.3.7/js/tether.min.js" integrity="sha384-XTs3FgkjiBgo8qjEjBk0tGmf3wPrWtA6coPfQDfFEY8AnYJwjalXCiosYRBIBZX8" crossorigin="anonymous"></script>	
 <link href="stylesheet.css"rel="stylesheet"type="text/css">
 <script src="scripts.js" type='text/javascript'></script>
+
   <style type='text/css'>
   
   
@@ -110,9 +111,16 @@ require 'menu.php';
 	<div class="col-md-7">
 
 		<h2><?=$row['titre_video']?></h2>
-		
+		<div>
 		 <?=$row['url']?>
-		
+		 <div class="setPassword">
+		 <form class="formSendPassword"action=""method="post">
+		 <input data-idv="<?=$row['id_video']?>"type="password" name="setPassword" class="">
+		 <input type="submit" name="setPasswordSend"value="valider">
+		 </form>
+		 
+		 </div>
+		</div>
       <button type="submit" onclick="show('description-<?=$row['id_video']?>',this)" class="btn btn-default">voir plus d'infos</button>
 		
 		 <div id="description-<?=$row['id_video']?>"class="description description-<?=$row['id_video']?>">

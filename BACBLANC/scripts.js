@@ -1,6 +1,51 @@
 
 	$(document).ready(function(){
 	
+	
+	$('form').submit(function(event){
+		event.preventDefault();
+		var $password_video = $(this).find('input').val();
+		var $elem = $(this);
+		var $id = $(this).find('input').attr('data-idv');
+		var $opts = [];
+		$opts['pass'] = $password_video;
+		$opts['id'] = $id;
+		$.ajax({
+			url:'pass_load.php',
+			method:'POST',
+			data:$opts,
+			dataType:'html',
+			success:function(result){
+				
+				alert(result);
+			$elem.parent().hide();
+			}
+			
+		});
+	});
+	
+	
+	var iframe=$('iframe');
+	var setPassword=$('.setPassword');
+	iframe.each(function(){
+		$(this).parent().css('position','relative');
+	});
+	
+	setPassword.each(function(){
+		$(this).css('position','absolute');
+		$(this).css('top','0');
+		$(this).css('left','0');
+		$(this).css('right','0');
+		$(this).css('bottom','0');
+		$(this).css('background','black');
+		
+	});
+
+
+
+
+	
+	
 		console.log('jquerychargé');
 	
 		var $filterDiv = $('#filterDiv');
