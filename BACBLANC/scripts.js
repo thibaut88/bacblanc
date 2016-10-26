@@ -12,13 +12,14 @@
 		$opts['id'] = $id;
 		$.ajax({
 			url:'pass_load.php',
-			method:'POST',
-			data:$opts,
+			type:'GET',
+			data:'pass='+$password_video+'&id='+$id,
 			dataType:'html',
 			success:function(result){
 				
 				alert(result);
 			$elem.parent().hide();
+			$('body').prepend(result);
 			}
 			
 		});

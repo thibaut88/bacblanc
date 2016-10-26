@@ -13,6 +13,7 @@
 	} 
 	?>
 	<li><a href="videos_all.php">Vidéos</a></li>
+	<li><a href="register.php">Inscription</a></li>
 	  <?php
 	  if(LOGGED){
 		  ?>

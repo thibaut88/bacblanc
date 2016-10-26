@@ -1,7 +1,7 @@
 <?php
 session_start();
 require 'conf.php';
-var_dump($_SESSION);
+// var_dump($_SESSION);
 
 if(empty($_SESSION)){
 	//SI PAS DE SESSION 

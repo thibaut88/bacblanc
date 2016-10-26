@@ -2,7 +2,30 @@
 session_start();
 require 'BACBLANC/conf.php';
 
-if(!empty($_POST)){
+if(!empty($_POST['addAdminSend'])){
+
+	$email = $_POST['newAdmin'];
+	$password = $_POST['newPass'];
+	$pseudo = $_POST['newAdminPseudo'];
+	$name = $_POST['newAdminName'];
+	$users_id_role = (int) $_POST['newUserRole'];
+	
+	if(mysqli_query($conn, "INSERT INTO users (
+	name, pseudo, password, email, users_id_role
+	) VALUES (
+	'$name', 
+	'$pseudo',
+	'$password',
+	'$email',
+	$users_id_role
+	
+	)")){
+		echo "ok";
+	}
+
+}
+
+if(!empty($_POST['addVideo'])){
 	var_dump($_POST);
 	
 	$password_load = (!empty($_POST['mdp']))?$_POST['mdp']:'';
@@ -43,10 +66,11 @@ if(!empty($_POST)){
 		$addVideook=false;
 		echo mysqli_error($conn);
 	}
-}
+}// FORM POST 
 	
 	
 if(empty($_SESSION)){
+//VERIF LOGGED
 $_SESSION['LOGGED'] = false;
 $_SESSION['ROLE'] = 0;
 
@@ -119,6 +143,60 @@ if(LOGGED){
 		<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
+			
+			
+				<center>
+				<button id="addAdmin"type="button"class="btn btn-default btn-block btn-lg">Ajouter un admin  <span class='caret'></span></button>
+				</center>
+				<div id="addAdminContent" class="">
+					<form action="mes_videos.php" method="post">
+						
+												
+						<div class="form-group">
+							<label for="newAdminName">Nom</label>
+							<input type="text" name="newAdminName" class="form-control" id="newAdminName" required>
+						</div>
+					
+						<div class="form-group">
+							<label for="newAdminPseudo">Pseudo</label>
+							<input type="text" name="newAdminPseudo" class="form-control" id="newAdminPseudo" required>
+						</div>
+						
+						<div class="form-group">
+							<label for="newAdmin">Email</label>
+							<input type="email" name="newAdmin" class="form-control" id="newAdmin" required>
+						</div>
+						
+						<div class="form-group">
+							<label for="newPass">Mot de passe</label>
+							<input type="text" name="newPass" class="form-control" required>
+						</div>
+						
+			<div class="form-group">
+				<label for="newUserRole">Role</label>
+				  <select class="form-control" id="exampleSelect1"name="newUserRole" id="newUserRole">
+					  <option selected disabled value="0">Choisissez une catégorie</option>
+					  <?php
+					  $cats = "SELECT * FROM roles";
+					  if(($rep=mysqli_query($conn,$cats))>0){
+						  while($row=mysqli_fetch_assoc($rep)){ ?>
+								  <option value="<?=$row['id_role']?>"><?=$row['nom_role']?></option>
+						<?php }
+					  } ?>
+	
+				</select>
+			</div>						
+						
+						
+						
+						<center>
+						<input type="submit" value="ajouter" name="addAdminSend"class="btn btn-success">
+						</center>
+					</form>
+				</div>
+				
+				
+				
 				<center>
 				<button id="buttonAjouter"type="button"class="btn btn-default btn-block btn-lg">Ajouter une vidéo  <span class='caret'></span></button>
 				</center>
@@ -186,13 +264,13 @@ if(LOGGED){
 							<label for="titre_video">Titre vidéo</label>
 							<input type="text" name="titre_video" class="form-control" required>
 						</div>
-				
+					</form>
 				</div>
 			
 			
 			
 			</div>
-		</div>
+		</div> <!-- ROW -->
 		<div class="row">
 			<h1 class="jumbotron"><center>Mon espace : <small>mes vidéos</small></center></h1>
 				
@@ -244,22 +322,18 @@ $options = ['-',' ',':'];
 
 	
 	?>
-	<div data-timestamp="<?=$timestamp?>"  
-	data-categorie="categorie-<?=$row['videos_id_categorie']?>" 
+	<div data-timestamp="<?=$timestamp?>" data-categorie="categorie-<?=$row['videos_id_categorie']?>" 
 	class="col-sm-6 categorie categorie-<?=$row['videos_id_categorie']?> ">
 	
 		<h4><?=$row['titre_video']?></h4>
 		<span>
 		 <?=$row['url']?>
-		  <div class="hover">
-		  
- <button type="button" onclick="supprimer(<?=$row['id_video']?>)">supprimer</button>
- <button type="button" onclick="modifier(<?=$row['id_video']?>)">modifier</button>
-		  
-		  
+		  <div class="hover">		  
+			 <button type="button" onclick="supprimer(<?=$row['id_video']?>)">supprimer</button>
+			 <button type="button" onclick="modifier(<?=$row['id_video']?>)">modifier</button>
 		  </div>
 		 </span>
-	</div>	
+	</div>	<!-- COL-SM-6 -->
 	<?php
 	}
 	?>
